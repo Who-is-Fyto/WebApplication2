@@ -1,0 +1,57 @@
+@model List<WebApplication2.Models.Student>
+    @{
+        ViewData["Title"] = "Students";
+    }
+    <h2>Students</h2>
+    @*Model.Any() Checks if the list has at least 1 item - avoids showing an empty table with just headers and nothing useful*@
+    @if (!Model.Any()){
+        <p>
+            No Students Found
+        </p>
+    }
+    else{
+        <table class="table table-striped">
+            <thead>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Course
+                </th>
+                <th>
+                    Enrolled
+                </th>
+            </thead>
+            <tbody>
+                @foreach(var s in Model){
+                    <tr>
+                        <td>
+                            @s.Name
+                        </td>
+                        <td>
+                            @s.Course
+                        </td>
+                        <td>
+                            @s.EnrollementDate.ToShortDateString()
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+@{
+    ViewData["Title"] = "Students";
+}
+
+<h2>Students</h2>
+<a asp-action="Create" class="btn btn-success mb-2">+ Add Student</a>
+
+@foreach (var s in Model)
+{
+    @await Html.PartialAsync("_StudentCard", s)
+    <div class="mb-3">
+        <a asp-action="Details" asp-route-id="@s.Id" class="btn btn-sm btn-info">Details</a>
+        <a asp-action="Edit" asp-route-id="@s.Id" class="btn btn-sm btn-warning">Edit</a>
+        <a asp-action="Delete" asp-route-id="@s.Id" class="btn btn-sm btn-danger">Delete</a>
+    </div>
+}

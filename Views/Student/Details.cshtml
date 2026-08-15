@@ -1,0 +1,9 @@
+@model WebApplication2.Models.Student
+
+@{
+    ViewData["Title"] = "Student Details";
+}
+
+<h2>Student Details</h2>
+@await Html.PartialAsync("_StudentCard", Model)
+<a asp-action="Index" class="btn btn-secondary">Back to list</a>

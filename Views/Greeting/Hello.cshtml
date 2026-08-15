@@ -1,0 +1,11 @@
+@{
+   ViewData["Title"] = "Hello!";
+}
+
+@* @ViewBag.Name reads the value the controller stuffed into ViewBag.
+    Note: Nothing here checks that "Name" was actually set -
+    if the controller forgot to set it, this just renders blank.  That fragility
+    is exactly why Activity 2 moves us to strongly-typed models.*@
+
+<h2>Hello, @ViewBag.Name! </h2>
+<p> This value came from the URL segment, through the controller, into this view. </p>
